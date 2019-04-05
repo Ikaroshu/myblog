@@ -1,0 +1,46 @@
+{% extends 'blog/project_base.html' %}
+{% load blog_tags %}
+{% block pagetitle %}
+<h1>{{ page_title }}</h1>
+{% endblock %}
+
+{% block leftpanel %}
+    <h1>{{ proj.name }}</h1>
+
+                  <div class="entry-description">
+
+                     <p>{{ proj.intro }}</p>
+
+                  </div>
+
+                  <ul class="portfolio-meta-list">
+						   <li><span>Date: </span>{{ proj.created_time }}</li>
+{#						   <li><span>Client </span>Styleshout</li>#}
+						   <li><span>Skills: </span>/ {% for tg in proj.skills.all %}{{ tg.name }} / {% endfor %}</li>
+				      </ul>
+
+                  <a class="button" href="{{ proj.link }}">View project</a>
+{% endblock %}
+
+{% block body %}
+
+<div id="primary" class="eight columns">
+
+               <div class="entry-media">
+
+                  <img src="{{ proj.image }}" alt="" />
+
+{#                  <img src="images/portfolio/entries/geometric-backgrounds-02.jpg" alt="" />#}
+
+               </div>
+
+               <div class="entry-excerpt">
+
+				      {{ proj.body|safe }}
+
+					</div>
+
+            </div> <!-- primary end-->
+
+
+{% endblock %}

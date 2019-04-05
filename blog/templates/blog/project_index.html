@@ -1,0 +1,74 @@
+{% extends 'blog/project_base.html' %}
+{% load blog_tags %}
+{% block pagetitle %}
+<h1>{{ page_title }}</h1>
+{% endblock %}
+
+{% block leftpanel %}
+    <h1>My projects</h1>
+<p class="lead">Here I share my projects that arises from my research on physics, and also some tiny projects I did for learning data science</p>
+{% endblock %}
+
+{% block body %}
+
+            <div id="primary" class="eight columns portfolio-list">
+
+               <div id="portfolio-wrapper" class="bgrid-halves cf">
+
+                   {% for proj in project_list %}
+
+          		   <div class="columns portfolio-item">
+                     <div class="item-wrap">
+          				   <a href="{{ proj.get_absolute_url }}">
+                           <img alt="" src="{{ proj.image }}">
+                           <div class="overlay"></div>
+                           <div class="link-icon"><i class="fa fa-link"></i></div>
+                        </a>
+          					<div class="portfolio-item-meta">
+          					   <h5><a href="{{ proj.get_absolute_url }}">{{ proj.name }}</a></h5>
+                           <p>{% for tg in proj.skills.all %}{{ tg.name }}/{% endfor %}</p>
+          					</div>
+                     </div>
+          			</div>
+
+                    {% endfor %}
+
+               </div>
+
+            {% if is_paginated %}
+            <!-- Pagination -->
+            <nav class="col full pagination">
+  			      <ul>
+                    {% if not page_obj.has_previous %}
+                        <li><span class="page-numbers prev inactive">Prev</span></li>
+                    {% else %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-numbers prev">Prev</a></li>
+                    {% endif %}
+
+                    {% if page_obj.number|left_bound > 1 %}
+                        <li><a href="?page=1" class="page-numbers">1...</a></li>
+                    {% endif %}
+
+                    {% for pg in page_obj.number|prange %}
+                        {% if pg == page_obj.number %}
+                            <li><span class="page-numbers current">{{ pg }}</span></li>
+                        {% elif pg <= paginator.num_pages %}
+                            <li><a href="?page={{ pg }}" class="page-numbers">{{ pg }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.number|right_bound < paginator.num_pages %}
+                        <li><a href="?page={{ paginator.num_pages }}" class="page-numbers">...{{ paginator.num_pages }}</a></li>
+                    {% endif %}
+
+  				    {% if not page_obj.has_next %}
+                        <li><span class="page-numbers next inactive">Next</span></li>
+                    {% else %}
+                        <li><a href="?page={{ page_obj.next_page_number }}" class="page-numbers next">Next</a></li>
+                    {% endif %}
+  			      </ul>
+  		      </nav>
+            {% endif %}
+
+            </div> <!-- primary end-->
+{% endblock %}

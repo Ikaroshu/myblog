@@ -1,0 +1,78 @@
+{% extends 'blog/base.html' %}
+{% load blog_tags %}
+{% block pagetitle %}
+<h1>{{ page_title }}</h1>
+{% endblock %}
+{% block main %}
+<div id="primary" class="eight columns">
+
+            {% for post in post_list %}
+            <article class="post">
+
+               <div class="entry-header cf">
+
+                  <h1><a href="{{ post.get_absolute_url }}" title="">{{ post.title }}</a></h1>
+
+                  <p class="post-meta">
+
+                     <time class="date" datetime="2014-01-14T11:24">{{ post.created_time }}</time>
+                     /
+                     <span class="categories">
+                         {% for cat in post.tags.all %}
+                     <a href="#">{{ cat.name }}</a> /
+                         {% endfor %}
+                     </span>
+
+                  </p>
+
+               </div>
+
+{#               <div class="post-thumb">#}
+{#                  <a href="single.html" title=""><img src="images/post-image/post-image-1300x500-01.jpg" alt="post-image" title="post-image"></a>#}
+{#               </div>#}
+
+               <div class="post-content">
+
+                  <p>{{ post.excerpt }} </p>
+
+               </div>
+
+            </article> <!-- post end -->
+         {% endfor %}
+            {% if is_paginated %}
+            <!-- Pagination -->
+            <nav class="col full pagination">
+  			      <ul>
+                    {% if not page_obj.has_previous %}
+                        <li><span class="page-numbers prev inactive">Prev</span></li>
+                    {% else %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-numbers prev">Prev</a></li>
+                    {% endif %}
+
+                    {% if page_obj.number|left_bound > 1 %}
+                        <li><a href="?page=1" class="page-numbers">1...</a></li>
+                    {% endif %}
+
+                    {% for pg in page_obj.number|prange %}
+                        {% if pg == page_obj.number %}
+                            <li><span class="page-numbers current">{{ pg }}</span></li>
+                        {% elif pg <= paginator.num_pages %}
+                            <li><a href="?page={{ pg }}" class="page-numbers">{{ pg }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.number|right_bound < paginator.num_pages %}
+                        <li><a href="?page={{ paginator.num_pages }}" class="page-numbers">...{{ paginator.num_pages }}</a></li>
+                    {% endif %}
+
+  				    {% if not page_obj.has_next %}
+                        <li><span class="page-numbers next inactive">Next</span></li>
+                    {% else %}
+                        <li><a href="?page={{ page_obj.next_page_number }}" class="page-numbers next">Next</a></li>
+                    {% endif %}
+  			      </ul>
+  		      </nav>
+            {% endif %}
+
+         </div> <!-- Primary End-->
+{% endblock main %}
