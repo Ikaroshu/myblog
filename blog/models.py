@@ -58,7 +58,12 @@ class Post(models.Model):
             md = markdown.Markdown(extensions=[
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite',
-            ])
+                'mdx_math'
+            ],
+                extension_configs={
+                    'mdx_math': {'enable_dollar_delimiter': True}
+                }
+            )
             self.excerpt = strip_tags(md.convert(self.body))[:100]
         super(Post, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 

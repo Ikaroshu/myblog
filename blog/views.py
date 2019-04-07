@@ -57,7 +57,12 @@ class PostDetailView(DetailView):
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
-        ])
+            'mdx_math'
+        ],
+            extension_configs={
+                'mdx_math': {'enable_dollar_delimiter': True}
+            }
+        )
         post.body = md.convert(post.body)
         post.toc = md.toc
         return post
@@ -84,7 +89,12 @@ class ProjDetailView(DetailView):
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
-        ])
+            'mdx_math'
+        ],
+            extension_configs={
+                'mdx_math': {'enable_dollar_delimiter': True}
+            }
+        )
         proj.body = md.convert(proj.body)
         return proj
 
