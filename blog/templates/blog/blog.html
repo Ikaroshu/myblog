@@ -18,8 +18,8 @@
                      <time class="date" datetime="2014-01-14T11:24">{{ post.created_time }}</time>
                      /
                      <span class="categories">
-                         {% for cat in post.tags.all %}
-                     <a href="#">{{ cat.name }}</a> /
+                         {% for tg in post.tags.all %}
+                     <a href="{% url 'blog:tags' tg.pk %}">{{ tg.name }}</a> /
                          {% endfor %}
                      </span>
 
