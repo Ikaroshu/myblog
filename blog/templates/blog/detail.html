@@ -4,7 +4,7 @@
 <h1>{{ post.title }}</h1>
     <p class="post-meta">
 
-                     <time class="date" datetime="2014-01-14T11:24">{{ post.modified_time }}</time>
+                     <time class="date" datetime="2014-01-14T11:24">{{ post.created_time }}</time>
                      /
                      <span class="categories">
                      <a href="{% url 'blog:category' post.category.pk %}">{{ post.category }}</a>
