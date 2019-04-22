@@ -117,6 +117,16 @@ table {
    border-spacing: 0;
 }
 
+table, th, td {
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+th {
+	font-weight: normal;
+}
+
 
 /* ------------------------------------------------------------------ */
 /* c. Default and Basic Styles
