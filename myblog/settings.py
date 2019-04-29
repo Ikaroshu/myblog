@@ -26,7 +26,7 @@ sec = json.load(open(os.path.join(BASE_DIR, 'secret.json')))
 SECRET_KEY = sec['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.shusblog.dev']
 
@@ -186,6 +186,12 @@ LOGGING = {
         'django': {
             'handlers': ['console'],
             'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.template': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': True,
         },
     },
 }

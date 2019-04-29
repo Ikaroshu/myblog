@@ -6,16 +6,16 @@ from django.db import models
 
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.TextField: {'widget': AdminMartorWidget},
-    }
+    # formfield_overrides = {
+    #     models.TextField: {'widget': AdminMartorWidget},
+    # }
     list_display = ['title', 'created_time', 'modified_time', 'category']
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.TextField: {'widget': AdminMartorWidget},
-    }
+    # formfield_overrides = {
+    #     models.TextField: {'widget': AdminMartorWidget},
+    # }
     list_display = ['name', 'created_time']
 
 
