@@ -812,6 +812,9 @@ properly.
 	text-align: center !important;
 }
 
-
+pre {
+    overflow: scroll;
+    white-space: pre;
+}
 
 
