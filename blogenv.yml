@@ -33,5 +33,4 @@ dependencies:
     - pillow==5.4.1
     - requests==2.21.0
     - urllib3==1.24.1
-prefix: /usr/local/anaconda3/envs/myblog
 
